@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   //card options
+
   const cardArray = [
     {
       name: 'fries',
@@ -113,4 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   createBoard()
+  function ratoliColor(){
+    
+  }
 })

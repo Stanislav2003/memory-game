@@ -59,6 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let cardsChosen = []
   let cardsChosenId = []
   let cardsWon = []
+  let contadorHistorial=0
 
   //create your board
   function createBoard() {
@@ -74,6 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //check for matches
   let sum=4;
   let lifes = document.getElementById("lifes")
+  let historial=[]
   function checkForMatch() {
     const cards = document.querySelectorAll('img')
     const optionOneId = cardsChosenId[0]
@@ -83,12 +85,14 @@ document.addEventListener('DOMContentLoaded', () => {
       cards[optionOneId].setAttribute('src', 'images/blank.png')
       cards[optionTwoId].setAttribute('src', 'images/blank.png')
       alert('You have clicked the same image!')
+      contadorHistorial++
+      historial.push('Accio'+contadorHistorial+': you have clicked the same image!'+'<br>')
+      
       sum--;
       lifes.innerHTML=sum;
+      nomCarta.innerHTML=""
     }
-    if(sum==0){
-      alert('HAS PERDUT STAN!')
-    }
+      
     else if (cardsChosen[0] === cardsChosen[1]) {
       alert('You found a match')
       cards[optionOneId].setAttribute('src', 'images/white.png')
@@ -96,20 +100,43 @@ document.addEventListener('DOMContentLoaded', () => {
       cards[optionOneId].removeEventListener('click', flipCard)
       cards[optionTwoId].removeEventListener('click', flipCard)
       cardsWon.push(cardsChosen)
+      contadorHistorial++
+      historial.push('Accio'+contadorHistorial+':You found a match'+'<br>')
+     
+      nomCarta.innerHTML=""
+
     } else {
       cards[optionOneId].setAttribute('src', 'images/blank.png')
       cards[optionTwoId].setAttribute('src', 'images/blank.png')
       alert('Sorry, try again')
+      contadorHistorial++
+      historial.push('Accio'+contadorHistorial+':Sorry try again'+'<br>')
+      
+      nomCarta.innerHTML=""
       sum--;
       lifes.innerHTML=sum;
     }
+    if(sum==1){
+      alert('HAS PERDUT STAN!')
+      contadorHistorial++
+      historial.push('Accio'+contadorHistorial+'HAS PERDUT STAN!'+'<br>')
+     
+      nomCarta.innerHTML=""
+    }
+    
+    
     cardsChosen = []
     cardsChosenId = []
     resultDisplay.textContent = cardsWon.length
     if  (cardsWon.length === cardArray.length/2) {
       resultDisplay.textContent = 'Congratulations! You found them all!'
+      contadorHistorial++
+      historial.push('Accio'+contadorHistorial+':Congratulations! You found them all!'+'<br>')
+      
     }
+    
   }
+  
 
   //flip your card
   let nomCarta=document.getElementById("nomCarta")
@@ -143,9 +170,11 @@ document.addEventListener('DOMContentLoaded', () => {
 colorcanvi();
 
 
-  //ex2//
-
-
+let boto=document.getElementById("historial")
+boto.addEventListener('click',()=>{
+  
+  document.getElementById("historialText").innerHTML = JSON.stringify(historial)
+})
  
 
 

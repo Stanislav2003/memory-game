@@ -112,9 +112,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   //flip your card
+  let nomCarta=document.getElementById("nomCarta")
   function flipCard() {
     let cardId = this.getAttribute('data-id')
     cardsChosen.push(cardArray[cardId].name)
+    //es mostra el nom de la carta//
+
+       nomCarta.innerHTML=(cardArray[cardId].name);
     cardsChosenId.push(cardId)
     this.setAttribute('src', cardArray[cardId].img)
     if (cardsChosen.length ===2) {

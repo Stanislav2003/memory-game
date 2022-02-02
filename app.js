@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   //card options
-console.log("hola");
+
   const cardArray = [
     {
       name: 'fries',
@@ -72,6 +72,8 @@ console.log("hola");
   }
 
   //check for matches
+  let sum=4;
+  let lifes = document.getElementById("lifes")
   function checkForMatch() {
     const cards = document.querySelectorAll('img')
     const optionOneId = cardsChosenId[0]
@@ -81,6 +83,11 @@ console.log("hola");
       cards[optionOneId].setAttribute('src', 'images/blank.png')
       cards[optionTwoId].setAttribute('src', 'images/blank.png')
       alert('You have clicked the same image!')
+      sum--;
+      lifes.innerHTML=sum;
+    }
+    if(sum==0){
+      alert('HAS PERDUT STAN!')
     }
     else if (cardsChosen[0] === cardsChosen[1]) {
       alert('You found a match')
@@ -93,6 +100,8 @@ console.log("hola");
       cards[optionOneId].setAttribute('src', 'images/blank.png')
       cards[optionTwoId].setAttribute('src', 'images/blank.png')
       alert('Sorry, try again')
+      sum--;
+      lifes.innerHTML=sum;
     }
     cardsChosen = []
     cardsChosenId = []
@@ -116,15 +125,24 @@ console.log("hola");
   createBoard()
   
   //canvi color mouse score green blue//
+  function colorcanvi(){
   let tablero=document.querySelector(".grid")
   let puntos=document.getElementById("result")
   
-  tablero.addEventListener('mouseover',()=>{
+  tablero.addEventListener('mouseover',(e)=>{
     puntos.style.color="blue";
   })
-  tablero.addEventListener('mouseout',()=>{
+  tablero.addEventListener('mouseout',(e)=>{
     puntos.style.color="green";
   })
+}
+colorcanvi();
+
+
+  //ex2//
+
+
+ 
 
 
   

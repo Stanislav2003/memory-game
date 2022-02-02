@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   //card options
-
+console.log("hola");
   const cardArray = [
     {
       name: 'fries',
@@ -114,7 +114,19 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   createBoard()
-  function ratoliColor(){
-    
-  }
+  
+  //canvi color mouse score green blue//
+  let tablero=document.querySelector(".grid")
+  let puntos=document.getElementById("result")
+  
+  tablero.addEventListener('mouseover',()=>{
+    puntos.style.color="blue";
+  })
+  tablero.addEventListener('mouseout',()=>{
+    puntos.style.color="green";
+  })
+
+
+  
+  
 })
